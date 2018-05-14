@@ -36,7 +36,7 @@
 <body >
 <div class="page-container">
     <h1>Login</h1>
-    <form action="${pageContext.request.contextPath}/shiro/login" method="post">
+    <form action="${pageContext.request.contextPath}/user/login.do" method="post">
         <input type="text" name="account" class="username" placeholder="Username">
         <input type="password" name="password" class="password" placeholder="Password">
         <input type="checkbox" name="rememberMe" checked/>

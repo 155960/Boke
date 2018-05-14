@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%--@elvariable id="error" type="org.springframework.validation.Errors"--%>
+<%--@elvariable id="fail" type="java.lang.String"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page import="java.lang.String"
 %>
@@ -50,8 +51,10 @@
         <button type="submit">Register</button>
         <div class="error"><span>+</span></div>
     </form:form>--%>
+    <p>${fail}</p>
 
     <form action="${base}/user/register.do" method="post">
+
         <input type="text" name="account" placeholder="account"/>
         ${(error.getFieldError("account").defaultMessage) }
 
@@ -60,6 +63,9 @@
         <%--<input type="password" name="repassword" class="password" placeholder="Password">--%>
         <input type="email" name="email" placeholder="email"/>
         ${(error.getFieldError("email").defaultMessage) }
+        <input type="text" name="nickName" placeholder="昵称"/>
+        <input type="text" name="githubAddr" placeholder="github主页"/>
+        <input type="text" name="csdnAddr" placeholder="csdn主页"/>
         <button type="submit">Register</button>
         <div class="error"><span>+</span></div>
         </form>

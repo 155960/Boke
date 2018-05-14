@@ -51,7 +51,7 @@
       )
     values (#{articleId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{ctype,jdbcType=VARCHAR}, 
       #{account,jdbcType=VARCHAR}, #{timesOfView,jdbcType=INTEGER}, #{numberOfEnjoy,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{essay,jdbcType=LONGVARCHAR}
+      now(),now(), #{essay,jdbcType=LONGVARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.boke.pojo.Article" >
@@ -108,7 +108,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="essay != null" >
         #{essay,jdbcType=LONGVARCHAR},
@@ -137,7 +137,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
       <if test="essay != null" >
         essay = #{essay,jdbcType=LONGVARCHAR},
@@ -165,7 +165,7 @@
       times_of_view = #{timesOfView,jdbcType=INTEGER},
       number_of_enjoy = #{numberOfEnjoy,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
 </mapper>

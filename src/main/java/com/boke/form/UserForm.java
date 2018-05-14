@@ -17,6 +17,22 @@ public class UserForm {
     @Email(message = "{user.email}")
     private String email;
 
+    private String nickName;
+
+    private String githubAddr;
+
+    private String csdnAddr;
+
+    private boolean rememberMe;
+
+    public boolean isRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
     public String getAccount() {
         return account;
     }
@@ -39,5 +55,29 @@ public class UserForm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nikeName) {
+        this.nickName = nikeName;
+    }
+
+    public String getGithubAddr() {
+        return githubAddr;
+    }
+
+    public void setGithubAddr(String githubAddr) {
+        this.githubAddr = githubAddr;
+    }
+
+    public String getCsdnAddr() {
+        return csdnAddr;
+    }
+
+    public void setCsdnAddr(String csdnAddr) {
+        this.csdnAddr = csdnAddr;
     }
 }
