@@ -13,15 +13,18 @@
 			http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+    <context:component-scan base-package="com.boke.realm"/>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="webSecurityManager"/>
         <!--登录页-->
-        <property name="loginUrl" value="/shiro/login"/>
+        <property name="loginUrl" value="/user/login.do"/>
         <!--认证失败-->
         <property name="unauthorizedUrl" value="/error"/>
+        <property name="successUrl" value=""/>
         <property name="filterChainDefinitions">
             <value>
-
+                /user/register.do =anon
+                /user/** =authc
             </value>
         </property>
         <!--<property name="filters">
@@ -32,10 +35,35 @@
     </bean>
 
     <bean id="webSecurityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-       <!-- <property name="realm" ref="userRealm"/>
-        <property name="rememberMeManager" ref="cookieRemeber"/>
-        <property name="sessionManager" ref="sessionManager"/>-->
+       <property name="realm" ref="userRealm"/>
+         <property name="rememberMeManager" ref="cookieRemeber"/>
+        <property name="sessionManager" ref="webSessionManager"/>
     </bean>
 
     <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean id="md5" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <!--验证次数-->
+        <property name="hashIterations" value="1"/>
+    </bean>
+
+    <bean id="userRealm" class="com.boke.realm.UserRealm">
+        <property name="credentialsMatcher" ref="md5"/>
+    </bean>
+
+    <!--减少从数据库读的次数-->
+    <bean id="webSessionManager" class="com.boke.redis.CustomSessionManager">
+        <property name="sessionDAO" ref="sessionDao"/>
+    </bean>
+
+    <bean id="cookieRemeber" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+
+    <bean id="cookie" class="org.apache.shiro.web.servlet.SimpleCookie" >
+        <!--名字-->
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="20000"/>
+    </bean>
 </beans>

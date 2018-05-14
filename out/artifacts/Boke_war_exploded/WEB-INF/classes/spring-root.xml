@@ -35,6 +35,8 @@
     <bean id="validationPostProcessor" class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
         <property name="validator" ref="localValidatorFactoryBean"/>
     </bean>
+
     <import resource="spring-datasource"/>
+    <import resource="redis.xml"/>
     <import resource="spring-shiro.xml"/>
 </beans>

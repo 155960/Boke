@@ -36,8 +36,8 @@
       update_time)
     values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
       #{cpassword,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{githubAddr,jdbcType=VARCHAR}, #{csdnAddr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{githubAddr,jdbcType=VARCHAR}, #{csdnAddr,jdbcType=VARCHAR}, now(),
+      now())
   </insert>
   <insert id="insertSelective" parameterType="com.boke.pojo.User" >
     insert into user
@@ -102,7 +102,7 @@
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -134,7 +134,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -149,7 +149,14 @@
       github_addr = #{githubAddr,jdbcType=VARCHAR},
       csdn_addr = #{csdnAddr,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectUserByAccount" resultMap="BaseResultMap" parameterType="string">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from user
+    WHERE account=#{account}
+  </select>
 </mapper>
