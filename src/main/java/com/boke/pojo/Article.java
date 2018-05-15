@@ -7,6 +7,8 @@ public class Article {
 
     private String title;
 
+    private String essay;
+
     private String ctype;
 
     private String account;
@@ -19,18 +21,16 @@ public class Article {
 
     private Date updateTime;
 
-    private String essay;
-
-    public Article(Integer articleId, String title, String ctype, String account, Integer timesOfView, Integer numberOfEnjoy, Date createTime, Date updateTime, String essay) {
+    public Article(Integer articleId, String title, String essay, String ctype, String account, Integer timesOfView, Integer numberOfEnjoy, Date createTime, Date updateTime) {
         this.articleId = articleId;
         this.title = title;
+        this.essay = essay;
         this.ctype = ctype;
         this.account = account;
         this.timesOfView = timesOfView;
         this.numberOfEnjoy = numberOfEnjoy;
         this.createTime = createTime;
         this.updateTime = updateTime;
-        this.essay = essay;
     }
 
     public Article() {
@@ -51,6 +51,14 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
+    }
+
+    public String getEssay() {
+        return essay;
+    }
+
+    public void setEssay(String essay) {
+        this.essay = essay == null ? null : essay.trim();
     }
 
     public String getCtype() {
@@ -99,13 +107,5 @@ public class Article {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getEssay() {
-        return essay;
-    }
-
-    public void setEssay(String essay) {
-        this.essay = essay == null ? null : essay.trim();
     }
 }

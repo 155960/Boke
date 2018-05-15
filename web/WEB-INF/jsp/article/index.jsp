@@ -2,12 +2,10 @@
   Created by IntelliJ IDEA.
   User: zengqiang
   Date: 2018/4/22
-  Time: 13:04
+  Time: 10:14
   To change this template use File | Settings | File Templates.
 --%>
-
-<%--@elvariable id="articles" type="java.util.List<com.boke.pojo.Article>"--%>
-<%--@elvariable id="user" type="com.boke.pojo.User"--%>
+<%--@elvariable id="user" type="java.lang.String"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -18,43 +16,15 @@
     <meta name="description" content="寻梦主题的个人博客模板，优雅、稳重、大气,低调。" />
     <link href="${pageContext.request.contextPath}/blog/css/base.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/blog/css/index.css" rel="stylesheet">
-    <style type="text/css">
-        .dd
-        {
-            margin-left: -1em;
-            text-align: left;//左对齐
-            text-indent: 5em;
-            line-height: 24px;//行高
-            display:block;
-            height:73px;
-            overflow:hidden;
-            width:550px;
-        }</style>
     <!--[if lt IE 9]>
-    <script src="${pageContext.request.contextPath}/blog/js/modernizr.js" ">
-    </script>
+    <script src="${pageContext.request.contextPath}/blog/js/modernizr.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-
-        function changeLink(a,b) {
-
-            var s=a+"/article/preview?"+JSON.stringify(b);
-            return s;
-        }
-    </script>
 </head>
 <body>
 <header>
     <div id="logo"><a href="/"></a></div>
-    <nav class="topnav" id="topnav"><a
-            href="index.html"><span>首页</span><span class="en">Protal</span></a><a
-            href="about.html"><span>关于我</span><span class="en">About</span></a><a
-            href="newlist.html"><span>慢生活</span><span class="en">Life</span></a><a
-            href="moodlist.html"><span>碎言碎语</span><span class="en">Doing</span></a><a
-            href="${base}/user/article/writearticle.do"><span>写博客</span><span class="en">write</span></a><a
-            href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a><a
-            href="book.html"><span>留言版</span><span class="en">Gustbook</span></a><a
-            href="../login/index.html"><span>登录</span><span class="en">Login</span></a>
+    <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span><span class="en">Protal</span></a><a href="about.html"><span>关于我</span><span class="en">About</span></a><a href="newlist.html"><span>慢生活</span><span class="en">Life</span></a><a href="moodlist.html"><span>碎言碎语</span><span class="en">Doing</span></a><a href="share.html"><span>模板分享</span><span class="en">Share</span></a><a href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a><a href="book.html"><span>留言版</span><span class="en">Gustbook</span></a>
+        <a href="../login/index.html"><span>登录</span><span class="en">Login</span></a>
     </nav>
     </nav>
 </header>
@@ -65,10 +35,10 @@
             <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>
             <p>加了锁的青春，不会再因谁而推开心门。</p>
         </ul>
-        <div class="avatar"><a href="#"><span>${user.nickName}</span></a> </div>
+        <div class="avatar"><a href="#"><span>${user}</span></a> </div>
     </section>
 </div>
-<%--<div class="template">
+<div class="template">
     <div class="box">
         <h3>
             <p><span>个人博客</span>模板 Templates</p>
@@ -82,59 +52,47 @@
             <li><a href="/"  target="_blank"><img src="${pageContext.request.contextPath}/blog/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
         </ul>
     </div>
-</div>--%>
+</div>
 <article>
     <h2 class="title_tj">
-        <p>我的博客</p>
+        <p>文章<span>推荐</span></p>
     </h2>
-
     <div class="bloglist left">
-        <c:forEach var="article" items="${articles}">
-            <h3>${article.title}</h3>
-            <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
-            <ul>
-                <div class="dd" >${article.essay}</div>
-                <a title="/" href="${base}/article/preview?articleid=${article.articleId}"  target="_blank" class="readmore">详情>></a>
-            </ul>
-            <p class="dateview"><span>${article.createTime}</span><span>作者：${user.nickName}</span><span>博主首页：[<a href="/news/life/">程序人生</a>]</span></p>
-        </c:forEach>
-       <%-- <h3>${article.title}</h3>
+        <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
         <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
         <ul>
             <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-            <a title="/" href="/" target="_blank" class="readmore">修改>></a>
+            <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>${article.createTime}</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
-
-
-        <h3>${article.title}</h3>
+        <p class="dateview"><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+        <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
         <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
         <ul>
             <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-            <a title="/" href="${pageContext.request.contextPath}/article/viewtitle?title=Just about me" target="_blank" class="readmore">修改>></a>
+            <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>${article.createTime}</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
-        <h3>${article.title}</h3>
+        <p class="dateview"><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+        <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
         <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
         <ul>
             <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-            <a title="/" href="/" target="_blank" class="readmore">修改>></a>
+            <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>${article.createTime}</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
-        <h3>${article.title}</h3>
+        <p class="dateview"><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+        <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
         <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
         <ul>
             <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-            <a title="/" href="/" target="_blank" class="readmore">修改>></a>
+            <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>${article.createTime}</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
-        <h3>${article.title}</h3>
+        <p class="dateview"><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
+        <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>
         <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
         <ul>
             <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>
-            <a title="/" href="/" target="_blank" class="readmore">修改>></a>
+            <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>${article.createTime}</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>--%>
+        <p class="dateview"><span>2013-11-04</span><span>作者：杨青</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>
     </div>
     <aside class="right">
         <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>

@@ -6,10 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<%--@elvariable id="articles" type="java.util.List<com.zengqiang.blob.bean.Article>"--%>
-<%--@elvariable id="user" type="com.zengqiang.blob.bean.User"--%>
+<%--@elvariable id="articles" type="java.util.List<com.boke.pojo.Article>"--%>
+<%--@elvariable id="user" type="com.boke.pojo.User"--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <!doctype html>
 <html>
 <head>
@@ -52,7 +51,7 @@
             href="about.html"><span>关于我</span><span class="en">About</span></a><a
             href="newlist.html"><span>慢生活</span><span class="en">Life</span></a><a
             href="moodlist.html"><span>碎言碎语</span><span class="en">Doing</span></a><a
-            href="${base}/user/${user.account}/writearticle}/writearticle"><span>写博客</span><span class="en">Share</span></a><a
+            href="${base}/user/article/writearticle.do"><span>写博客</span><span class="en">write</span></a><a
             href="knowledge.html"><span>学无止境</span><span class="en">Learn</span></a><a
             href="book.html"><span>留言版</span><span class="en">Gustbook</span></a><a
             href="../login/index.html"><span>登录</span><span class="en">Login</span></a>
@@ -66,7 +65,7 @@
             <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>
             <p>加了锁的青春，不会再因谁而推开心门。</p>
         </ul>
-        <div class="avatar"><a href="#"><span>${account}</span></a> </div>
+        <div class="avatar"><a href="#"><span>${user.nickName}</span></a> </div>
     </section>
 </div>
 <%--<div class="template">
@@ -95,7 +94,7 @@
             <figure><img src="${pageContext.request.contextPath}/blog/images/001.png"></figure>
             <ul>
                 <div class="dd" >${article.essay}</div>
-                <a title="/" href="${base}/article/preview?articleid=${article.id}"  target="_blank" class="readmore">详情>></a>
+                <a title="/" href="${base}/article/preview?articleid=${article.articleId}"  target="_blank" class="readmore">详情>></a>
             </ul>
             <p class="dateview"><span>${article.createTime}</span><span>作者：${user.nickName}</span><span>博主首页：[<a href="/news/life/">程序人生</a>]</span></p>
         </c:forEach>

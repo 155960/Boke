@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,15 +35,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "login.do",method = RequestMethod.POST)
-    public String login(HttpSession session, UserForm userForm, Model model){
+    public View login(HttpSession session, UserForm userForm, Model model){
         //登录成功
         if(iUserService.login(userForm)){
             User user=iUserService.getUser(userForm.getAccount(),userForm.getPassword());
             session.setAttribute("user",user);
-            return "user/home";
+            model.addAttribute("account",user.getAccount());
+            return new RedirectView("/user/{account}/home.do",true);
         }else{
             //
-            return "";
+            return null;
 
         }
 
