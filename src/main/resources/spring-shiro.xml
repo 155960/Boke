@@ -23,8 +23,8 @@
         <property name="successUrl" value=""/>
         <property name="filterChainDefinitions">
             <value>
-                /user/register.do =anon
-                /user/** =authc
+                <!--/user/register.do =anon
+                /user/** =authc-->
             </value>
         </property>
         <!--<property name="filters">

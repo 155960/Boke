@@ -2,8 +2,10 @@ package com.boke.controller;
 
 import com.boke.common.Const;
 import com.boke.common.ResponseCode;
+import com.boke.common.ServerResponse;
 import com.boke.form.UserForm;
 import com.boke.pojo.User;
+import com.boke.service.IFileService;
 import com.boke.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -13,6 +15,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
@@ -28,6 +32,9 @@ public class UserController {
 
     @Autowired
     private IUserService iUserService;
+
+    @Autowired
+    private IFileService iFileService;
 
     @RequestMapping("login.do")
     public String index(){
@@ -70,6 +77,14 @@ public class UserController {
     @RequestMapping(value = "register.do")
     public String register(){
         return "login/register";
+    }
+
+    @RequestMapping("upload_img.do")
+    @ResponseBody
+    public ServerResponse upload(MultipartFile file, HttpServletRequest request){
+        String path ="/img";
+        String targetFileName = iFileService.upload(file,path);
+        return ServerResponse.createBySuccess();
     }
 
 }

@@ -1,11 +1,15 @@
 package com.boke.common;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.io.Serializable;
 
 /**
  * 响应数据包装对象
  * 应该做成json的，但js了解不多
  * */
+@JsonSerialize(include =  JsonSerialize.Inclusion.NON_NULL)
 public class ServerResponse<T> implements Serializable{
     private int status;
     private String msg;
@@ -32,6 +36,7 @@ public class ServerResponse<T> implements Serializable{
     }
 
     //不在json序列化结果中
+    @JsonIgnore
     public boolean isSuccess(){
         return this.status==ResponseCode.SUCCESS.getCode();
     }

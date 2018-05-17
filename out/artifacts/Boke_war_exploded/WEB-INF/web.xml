@@ -98,7 +98,5 @@
         </jsp-property-group>
     </jsp-config>
 
-    <welcome-file-list>
-        <welcome-file>index.do</welcome-file>
-    </welcome-file-list>
+
 </web-app>
